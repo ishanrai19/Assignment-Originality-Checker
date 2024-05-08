@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="widht=device-width, initial-scale=1.0" />
+  <!-- Font Awesome 5.15.1 CSS -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+  <title>Check Originality on Web</title>
+</head>
+
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    padding-top: 8rem;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  textarea {
+    width: 80%;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<body>
+  <h1 style="text-align: center; margin-top: 50px;">Check Originality on Web</h1>
+  <form action="/report" method="POST">
+    <textarea id="area" placeholder="Enter your Text Here" name='text' rows="10" cols="80"></textarea>
+    <div style="text-align: center;">
+
+      <div class="container">
+        <h3 class="result">
+          <span id="word">0</span> Words and
+          <span id="char">0</span> Characters
+        </h3>
+      </div>
+
+      <script>
+        let area = document.getElementById('area');
+        let char = document.getElementById('char');
+        let word = document.getElementById('word');
+
+        area.addEventListener('input', function () {
+          // count characters 
+          let content = this.value;
+          char.textContent = content.length;
+
+          // remove empty spaces from start and end 
+          content.trim();
+          console.log(content);
+
+          let wordList = content.split(/\s/);
+
+          // Remove spaces from between words 
+          let words = wordList.filter(function (element) {
+            return element != "";
+          });
+
+          // count words 
+          word.textContent = words.length;
+        });
+      </script>
+
+      <button type="Submit" value="Send">Check Originality</button>
+      <br><br>
+      <a style="font-weight: bold;">You will be redirected once your report is generated.</a>
+      <br>
+      <a style="font-weight: bold;">Time to generate report depends on length of text.</a>
+
+
+
+      <!-- <button type="Submit" value="Send">Check Originality</button> -->
+    </div>
+  </form>
+</body>
+
+</html>
